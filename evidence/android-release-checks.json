@@ -1,0 +1,116 @@
+{
+  "test_date": "2026-10-07",
+  "device": "Pixel_4a / emulator-5554",
+  "package": "edu.course.calculator_app",
+  "build": "release",
+  "installation": "adb install -r: Success",
+  "results": [
+    {
+      "case": "addition",
+      "buttons": [
+        "1",
+        "2",
+        "Add",
+        "8",
+        "Equals"
+      ],
+      "expected": "20",
+      "passed": true
+    },
+    {
+      "case": "subtraction",
+      "buttons": [
+        "5",
+        "Subtract",
+        "9",
+        "Equals"
+      ],
+      "expected": "-4",
+      "passed": true
+    },
+    {
+      "case": "multiplication",
+      "buttons": [
+        "8",
+        "Multiply",
+        "7",
+        "Equals"
+      ],
+      "expected": "56",
+      "passed": true
+    },
+    {
+      "case": "division",
+      "buttons": [
+        "7",
+        "Divide",
+        "2",
+        "Equals"
+      ],
+      "expected": "3.5",
+      "passed": true
+    },
+    {
+      "case": "decimal_addition",
+      "buttons": [
+        "0",
+        "Decimal point",
+        "1",
+        "Add",
+        "0",
+        "Decimal point",
+        "2",
+        "Equals"
+      ],
+      "expected": "0.3",
+      "passed": true
+    },
+    {
+      "case": "operator_replacement",
+      "buttons": [
+        "8",
+        "Add",
+        "Multiply",
+        "2",
+        "Equals"
+      ],
+      "expected": "16",
+      "passed": true
+    },
+    {
+      "case": "clear_pending",
+      "buttons": [
+        "9",
+        "Multiply",
+        "All clear",
+        "2",
+        "Add",
+        "3",
+        "Equals"
+      ],
+      "expected": "5",
+      "passed": true
+    },
+    {
+      "case": "division_by_zero_and_recovery",
+      "expected": "Error, then 4 + 2 = 6",
+      "passed": true
+    },
+    {
+      "case": "incomplete_input",
+      "expected": "Recoverable incomplete-input message",
+      "passed": true
+    },
+    {
+      "case": "theme_preserves_calculation",
+      "expected": "Dark theme and 6 + 4 = 10",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "TalkBack listening was not manually tested.",
+    "Performance on an older physical device was not measured."
+  ],
+  "apk_sha256": "1daf2c1e828155a4e7f814e384cef22e7420dea5c7b2610f46250a783ca32241",
+  "renderer": "Skia compatibility renderer"
+}
