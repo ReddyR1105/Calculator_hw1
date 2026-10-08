@@ -1,4 +1,6 @@
-# Calculator App
+# Rohan Calculator HW1
+
+Repository: https://github.com/ReddyR1105/Calculator_hw1
 
 A small Flutter calculator for Assignment 01. Enter a number, choose an
 operator, enter a second number, and press equals.

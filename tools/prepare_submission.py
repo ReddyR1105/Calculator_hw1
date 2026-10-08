@@ -143,7 +143,7 @@ if url:
     assert re.fullmatch(r'https://github\.com/[^/\s]+/[^/\s]+/?', url), 'Use an actual repository URL.'
 (DEST / 'github_link.txt').write_text(url or 'REPLACE_WITH_THE_URL_OF_YOUR_PUBLISHED_GITHUB_REPOSITORY', encoding='utf-8')
 shutil.copy2(PROJECT / 'docs/AI_Test_Drive_Worksheet.md', EXTRAS / 'AI_Test_Drive_Worksheet.md')
-shutil.copy2(PROJECT / 'docs/Implementation.md', EXTRAS / 'Implementation_editable.md')
+(EXTRAS / 'Implementation_editable.md').write_text(markdown, encoding='utf-8')
 
 source_file = EXTRAS / 'calculator_app_source.zip'
 excluded_parts = {'build', '.dart_tool', '.gradle', '.kotlin', '.git', '.idea', '__pycache__'}
@@ -186,6 +186,10 @@ Manual TalkBack listening and older-device performance checks are still unverifi
 
 Do not upload this bundle as if the placeholders were finished. Upload the three required files after completing them.
 '''
+readme = readme.replace('YourName', NAME)
+if url:
+    readme = readme.replace('3. github_link.txt — replace the placeholder with your published repository\'s real URL.',
+                           '3. github_link.txt — contains ' + url + '. Upload the complete project to that repository and verify instructor access.')
 (DEST / 'READ_ME_FIRST.txt').write_text(readme, encoding='utf-8')
 manifest = {}
 for path in sorted(DEST.rglob('*')):
