@@ -55,14 +55,22 @@ reference is https://docs.flutter.dev/perf/impeller.
 - `tools/verify_android.py`: the emulator verification script used in this
   workspace. Change its ADB path and emulator serial for another machine.
 
-Ten automated widget test groups passed on October 7, 2026. The large-text
+Eleven automated widget test groups passed on October 7, 2026. The large-text
 check uses a 320 x 568 logical-pixel screen at 200% text scaling. Semantics
 and tap-target checks passed; manual TalkBack listening and older-device
 performance measurements remain separate checks.
 
 ## Before submission
 
-Complete the two-agent Test Drive records using real responses and upload
-the project to the repository linked above. Confirm the instructor can access
-the project files. The three LMS deliverables are `github_link.txt`, the
-release APK, and the completed Word implementation document.
+The complete project is uploaded to the public repository linked above.
+Actual Gemini and Codex responses are in `docs/AI_Test_Drive_Records.md`,
+with comparisons and verified claims in `docs/Implementation.md`. The course
+guide names Gemini, ChatGPT, and Copilot, so Codex as a substitute needs
+instructor acceptance. ChatGPT and Copilot did not return responses in the
+available browser sessions.
+
+The three LMS deliverables are `github_link.txt`, the release APK named
+`Rohan_CalculatorApp.apk`, and `Rohan_Implementation.docx`. The private Word
+document contains the student's ID; the public rationale uses placeholders
+for personal details. Upload the three deliverables to the course LMS and
+check the submission receipt.

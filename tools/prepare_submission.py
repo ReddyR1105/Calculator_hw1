@@ -145,6 +145,7 @@ if url:
     assert re.fullmatch(r'https://github\.com/[^/\s]+/[^/\s]+/?', url), 'Use an actual repository URL.'
 (DEST / 'github_link.txt').write_text(url or 'REPLACE_WITH_THE_URL_OF_YOUR_PUBLISHED_GITHUB_REPOSITORY', encoding='utf-8')
 shutil.copy2(PROJECT / 'docs/AI_Test_Drive_Worksheet.md', EXTRAS / 'AI_Test_Drive_Worksheet.md')
+shutil.copy2(PROJECT / 'docs/AI_Test_Drive_Records.md', EXTRAS / 'AI_Test_Drive_Records.md')
 (EXTRAS / 'Implementation_editable.md').write_text(markdown, encoding='utf-8')
 
 source_file = EXTRAS / 'calculator_app_source.zip'
@@ -163,39 +164,38 @@ with ZipFile(source_file) as archive:
     assert 'calculator_app/lib/main.dart' in archive.namelist()
     assert 'calculator_app/pubspec.yaml' in archive.namelist()
 
-readme = '''Calculator Assignment 01 — submission preparation
+readme = f'''Calculator Assignment 01 — submission files
 
-The APK is built and tested. The Word document is a draft until the items below are completed.
+Three required LMS uploads:
+1. {NAME}_CalculatorApp.apk — built, installed, and tested on the Android emulator.
+2. {NAME}_Implementation.docx — rationale, questions 01–06, agent comparisons, and screenshots.
+3. github_link.txt — {url or 'add the published repository URL'}.
 
-Required uploads:
-1. YourName_CalculatorApp.apk — rename using your name.
-2. YourName_Implementation.docx — add your name and ID, confirm the course, and finish the actual agent comparisons.
-3. github_link.txt — replace the placeholder with your published repository's real URL.
-
-Course: CSC 4360 — Undergraduate.
+Course: {META.get('course') or 'confirm the course'}.
 The three selected enhanced features are theme toggle, all-clear, and error handling.
 
-Extras/calculator_app_source.zip contains the complete portable Flutter project.
-Extract it and publish the calculator_app folder to GitHub. Check that the instructor can access it.
-Run flutter pub get on a new machine to regenerate local build configuration.
+Actual Gemini and Codex responses are recorded in Extras/AI_Test_Drive_Records.md.
+The unchanged Bug Hunt and State Design prompts each received two real responses.
+Both agents also answered the question 06 trade-off prompt. Claims were checked
+against additional widget tests and the source code.
 
-Extras/AI_Test_Drive_Worksheet.md contains the unchanged Bug Hunt and State Design prompts.
-Send both prompts to Gemini and ChatGPT, record the four real responses and dates, and verify a claim.
-The worksheet also includes the question 06 trade-off prompt.
+One requirement needs instructor acceptance: Codex is the second actual agent.
+The course guide's named options are Gemini, ChatGPT, and Copilot. ChatGPT's
+browser verification and Copilot's sign-in prevented obtaining their responses.
+Codex is not presented as ChatGPT. A grade cannot be guaranteed.
 
-Evidence is included in the source archive: 10 passing widget test groups and 10 passing Android release checks.
-Manual TalkBack listening and older-device performance checks are still unverified.
+The complete source is uploaded to the public GitHub repository. The student's
+ID is included in the private Word document and excluded from the public source.
+Extras/calculator_app_source.zip is a portable copy. Run flutter pub get after
+extracting it on another machine.
 
-Do not upload this bundle as if the placeholders were finished. Upload the three required files after completing them.
+Evidence: 11 passing widget test groups and 10 passing Android release checks.
+Manual TalkBack listening and older-device performance measurements are unverified.
+
+Upload the three required files to the correct course LMS assignment area and
+check the receipt. The ZIP is for downloading; it does not replace separate
+uploads unless the course site explicitly permits that. No LMS upload was made.
 '''
-readme = readme.replace('YourName', NAME)
-if META.get('name') and META.get('student_id'):
-    readme = readme.replace('add your name and ID, confirm the course', 'confirm the course')
-if META.get('course'):
-    readme = readme.replace('confirm the course, and finish', 'finish')
-if url:
-    readme = readme.replace('3. github_link.txt — replace the placeholder with your published repository\'s real URL.',
-                           '3. github_link.txt — contains ' + url + '. Upload the complete project to that repository and verify instructor access.')
 (DEST / 'READ_ME_FIRST.txt').write_text(readme, encoding='utf-8')
 manifest = {}
 for path in sorted(DEST.rglob('*')):

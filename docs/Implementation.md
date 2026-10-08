@@ -8,8 +8,10 @@ Course: CSC 4360 — Undergraduate
 
 Test date: October 7, 2026
 
-Draft item to finish: complete the required comparisons using actual responses
-from two agents. This project follows the CSC 4360 undergraduate pathway.
+This project follows the CSC 4360 undergraduate pathway. The comparisons use
+actual Gemini and Codex responses from October 7, 2026. The assignment's named
+options are Gemini, ChatGPT, and Copilot, so using Codex as the second agent
+needs instructor acceptance. No graduate extension is included.
 
 ## App overview
 
@@ -126,21 +128,23 @@ measurements were collected, so there is no claimed speed improvement.
 ## 05. AI output under review
 
 The supplied assignment lists this heading without a separate question. This
-section explains how generated suggestions would be checked against the
+section explains how generated suggestions were checked against the
 implementation instead of being treated as proof.
 
-For example, a suggestion that two-operand calculators should replace a
-pending operator needs a specific input sequence to verify it. The test
-8 + × 2 = confirms that this app displays 16. Another useful check is whether
-AC clears the stored first operand. Entering 9 × AC 2 + 3 = gives 5, which
-supports the reset behavior in _clear().
+Both agents treated consecutive operators as an error. I did not use that
+rule because this app lets the user change a pending operator before typing
+the second number. The test 5 + × 3 = gives 15, and 5 + × 2 = gives 10.
+These results match _chooseOperator(), which replaces the pending operator.
+An error is still shown if another operator is pressed after the second
+number has already started.
 
 Advice about accessibility also needs a clear limit. A semantic label and a
 passing widget test show that the label exists; they do not prove that the
-TalkBack reading order feels natural. Any agent advice included in the final
-comparison should identify the actual response, explain what was accepted or
-rejected, and point to a test or source-code detail that supports the choice.
-The real agent responses still need to be recorded.
+TalkBack reading order feels natural. Similarly, Gemini suggested limiting
+repeating decimals to prevent memory overflow. In this app, Dart double
+arithmetic has finite precision; formatting to 12 significant digits makes
+the display readable. It is not an overflow fix. The test 1 ÷ 3 = displays
+0.333333333333 and checks the actual formatting decision.
 
 ## 06. AI advice, trade-offs, and maintainability
 
@@ -158,25 +162,88 @@ refactor for another developer would be moving the arithmetic and input
 rules into a small Dart class. That would allow direct unit tests while
 keeping the widgets focused on the screen.
 
-Required agent comparison: [ADD THE ACTUAL GEMINI AND CHATGPT RESPONSES TO
-THE TRADE-OFF QUESTION, THEIR TEST DATES, AND THE COMPARISON. DO NOT ATTRIBUTE
-THE DESIGN EXPLANATION ABOVE TO AN AGENT WITHOUT ITS REAL RESPONSE.]
+The exact question sent to both agents was: For my calculator implementation,
+what trade-off should I make between reusing widgets, adding dependencies,
+and keeping the project small?
+
+Gemini recommended reusing a button component, avoiding early over-abstraction,
+and saving expression libraries for more complicated calculators. Codex also
+recommended a reusable button and minimal dependencies, but stressed separating
+calculation logic from the screen and accepting some repetition for clarity.
+Both responses were obtained on October 7, 2026.
+
+I kept the shared _button() helper because the controls need the same size
+and labels. I also kept StatefulWidget and setState for this small screen.
+Codex's suggestion to separate the logic is a useful next refactor, but the
+current methods remain in CalculatorPage and are checked through widget tests.
+Gemini's blanket statements about packages causing bloat or security problems
+are too broad. No package-size comparison was measured, and the project still
+depends on Flutter and the starter icon package. A new dependency should solve
+a specific requirement rather than be added just to reduce a few lines.
 
 ## Required AI Test Drive records
 
-Use docs/AI_Test_Drive_Worksheet.md to send the Bug Hunt and State Design
-prompts unchanged to both Gemini and ChatGPT. Two prompts sent to two agents
-produce four responses. The worksheet preserves the prompts and lists real
-project tests that can verify a claim.
+Agents and date: Google Gemini, shown as 3.5 Flash-Lite in its interface, and
+an independent OpenAI Codex agent; October 7, 2026. Each received the same
+unchanged Bug Hunt and State Design prompts, producing four real responses.
+They also answered the question 06 trade-off prompt. Full response records
+are in docs/AI_Test_Drive_Records.md in the repository.
 
-Bug Hunt comparison: [ADD BOTH ACTUAL RESPONSES, DATES, AN AGREEMENT OR
-DISAGREEMENT, WHAT WAS ACCEPTED OR REJECTED, AND ONE VERIFIED CLAIM.]
+ChatGPT stopped at browser verification, and Copilot required sign-in. Neither
+returned an answer. Codex is recorded under its actual name; it is not labeled
+as ChatGPT. Instructor acceptance of this substitute remains necessary because
+the guide lists Gemini, ChatGPT, and Copilot as its named choices.
 
-State Design comparison: [ADD BOTH ACTUAL RESPONSES, DATES, AN AGREEMENT OR
-DISAGREEMENT, WHAT WAS ACCEPTED OR REJECTED, AND ONE VERIFIED CLAIM.]
+Bug Hunt prompt: For a two-operand calculator with +, −, ×, and ÷, propose six
+test cases with exact inputs and expected outcomes. Include normal, boundary,
+and invalid sequences. Mark which cases require optional error handling or
+graduate decimal support. Do not write code.
 
-Existing evidence can support a claim, but it cannot stand in for the missing
-responses. No responses or agent-to-agent comparisons have been invented.
+Gemini's six suggestions were 5 + 3 → 8, 2.5 × 4 → 10, 1 ÷ 3 → a repeating
+decimal, 5 ÷ 0 → Error/Undefined/Infinity, 5 + × 3 → an error, and 2.2.1 + 4
+→ a malformed-input error. Its decimal-support label said "Gradual," which
+appears to be a wording mistake. Codex suggested 12 + 7 → 19, 4 − 9 → −5,
+0 × 85 → 0, 7 ÷ 2 → 3.5, 8 ÷ 0 → an error, and 5 + × 2 → an error.
+Equals was pressed to complete each operation when testing these suggestions.
+
+The normal arithmetic suggestions were useful and passed. Both agents
+included zero-division tests, but Gemini allowed Infinity as one outcome.
+I rejected Infinity because error handling is one of my chosen features:
+5 ÷ 0 and 8 ÷ 0 both show a recovery message. I also rejected both agents'
+repeated-operator assumptions for the replacement behavior explained above.
+For Gemini's malformed decimal, the second decimal point is ignored by
+_enterDigit(), so tapping 2.2.1 + 4 = displays 6.21. The app prevents the
+malformed number instead of accepting it and failing during parsing.
+
+Codex labeled 7 ÷ 2 as requiring graduate decimal-result support. I did not
+use that label to limit undergraduate division: integer operands can produce
+a fractional answer, and the test correctly displays 3.5. Decimal input is
+an extra convenience here, separate from the three selected enhancements.
+
+State Design prompt: A calculator stores displayText, firstOperand,
+pendingOperator, resultText, and isError. Which values need to be stored,
+which can be derived, and what bug could happen if resultText and displayText
+drift apart? Suggest one test that catches it.
+
+Both agents recommended storing the current input text and pending operation,
+and removing a separate resultText when it duplicates the display. Both
+described the risk of showing one number while calculating with an older
+result. Gemini wanted isError stored as a flag; Codex also allowed deriving
+it from a stored error object. I used _error as the stored message and check
+whether it is null, avoiding another error flag that could drift out of sync.
+
+Gemini's test completes 5 + 3 = 8, types 9, and then checks 9 + 1 = 10.
+Codex's test completes 2 + 3 = 5 and then checks × 2 = 10. Both sequences
+passed in the widget test named "Check real agent suggestions against
+calculator behavior." This app stores the formatted result in _input and
+reuses it after equals, so Codex's sequence is supported without adding
+long-expression evaluation. Gemini supplied JavaScript test code; I used
+the suggested sequence in a Flutter widget test rather than copying code
+for a different framework.
+
+The checks verified useful claims and also caught advice that did not match
+the chosen input rules. The agent responses helped choose additional tests;
+the passing tests and source code support the final decisions.
 
 ## Challenges and limits
 
@@ -203,7 +270,7 @@ another rendering check. The calculator logic did not need to change.
 
 flutter analyze: no issues found.
 
-flutter test: all 10 widget test groups passed.
+flutter test: all 11 widget test groups passed.
 
 flutter build apk --release: completed successfully.
 
