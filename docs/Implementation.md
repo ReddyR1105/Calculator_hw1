@@ -9,8 +9,8 @@ Course: CSC 4360 — Undergraduate
 Test date: October 7, 2026
 
 This project follows the CSC 4360 undergraduate pathway. The comparisons use
-actual Gemini and Codex responses from October 7, 2026. The assignment's named
-options are Gemini, ChatGPT, and Copilot, so using Codex as the second agent
+actual Gemini and OpenAI responses from October 7, 2026. The assignment's named
+options are Gemini, ChatGPT, and Copilot, so using the OpenAI workspace assistant
 needs instructor acceptance. No graduate extension is included.
 
 ## App overview
@@ -167,14 +167,14 @@ what trade-off should I make between reusing widgets, adding dependencies,
 and keeping the project small?
 
 Gemini recommended reusing a button component, avoiding early over-abstraction,
-and saving expression libraries for more complicated calculators. Codex also
+and saving expression libraries for more complicated calculators. OpenAI also
 recommended a reusable button and minimal dependencies, but stressed separating
 calculation logic from the screen and accepting some repetition for clarity.
 Both responses were obtained on October 7, 2026.
 
 I kept the shared _button() helper because the controls need the same size
 and labels. I also kept StatefulWidget and setState for this small screen.
-Codex's suggestion to separate the logic is a useful next refactor, but the
+OpenAI's suggestion to separate the logic is a useful next refactor, but the
 current methods remain in CalculatorPage and are checked through widget tests.
 Gemini's blanket statements about packages causing bloat or security problems
 are too broad. No package-size comparison was measured, and the project still
@@ -184,14 +184,15 @@ a specific requirement rather than be added just to reduce a few lines.
 ## Required AI Test Drive records
 
 Agents and date: Google Gemini, shown as 3.5 Flash-Lite in its interface, and
-an independent OpenAI Codex agent; October 7, 2026. Each received the same
+an independent OpenAI workspace assistant; October 7, 2026. Each received the same
 unchanged Bug Hunt and State Design prompts, producing four real responses.
 They also answered the question 06 trade-off prompt. Full response records
 are in docs/AI_Test_Drive_Records.md in the repository.
 
 ChatGPT stopped at browser verification, and Copilot required sign-in. Neither
-returned an answer. Codex is recorded under its actual name; it is not labeled
-as ChatGPT. Instructor acceptance of this substitute remains necessary because
+returned an answer. OpenAI is the provider label for the independent workspace
+assistant that supplied these responses; they did not come from the ChatGPT
+website. Instructor acceptance of this substitute remains necessary because
 the guide lists Gemini, ChatGPT, and Copilot as its named choices.
 
 Bug Hunt prompt: For a two-operand calculator with +, −, ×, and ÷, propose six
@@ -202,7 +203,7 @@ graduate decimal support. Do not write code.
 Gemini's six suggestions were 5 + 3 → 8, 2.5 × 4 → 10, 1 ÷ 3 → a repeating
 decimal, 5 ÷ 0 → Error/Undefined/Infinity, 5 + × 3 → an error, and 2.2.1 + 4
 → a malformed-input error. Its decimal-support label said "Gradual," which
-appears to be a wording mistake. Codex suggested 12 + 7 → 19, 4 − 9 → −5,
+appears to be a wording mistake. OpenAI suggested 12 + 7 → 19, 4 − 9 → −5,
 0 × 85 → 0, 7 ÷ 2 → 3.5, 8 ÷ 0 → an error, and 5 + × 2 → an error.
 Equals was pressed to complete each operation when testing these suggestions.
 
@@ -215,7 +216,7 @@ For Gemini's malformed decimal, the second decimal point is ignored by
 _enterDigit(), so tapping 2.2.1 + 4 = displays 6.21. The app prevents the
 malformed number instead of accepting it and failing during parsing.
 
-Codex labeled 7 ÷ 2 as requiring graduate decimal-result support. I did not
+OpenAI labeled 7 ÷ 2 as requiring graduate decimal-result support. I did not
 use that label to limit undergraduate division: integer operands can produce
 a fractional answer, and the test correctly displays 3.5. Decimal input is
 an extra convenience here, separate from the three selected enhancements.
@@ -228,15 +229,15 @@ drift apart? Suggest one test that catches it.
 Both agents recommended storing the current input text and pending operation,
 and removing a separate resultText when it duplicates the display. Both
 described the risk of showing one number while calculating with an older
-result. Gemini wanted isError stored as a flag; Codex also allowed deriving
+result. Gemini wanted isError stored as a flag; OpenAI also allowed deriving
 it from a stored error object. I used _error as the stored message and check
 whether it is null, avoiding another error flag that could drift out of sync.
 
 Gemini's test completes 5 + 3 = 8, types 9, and then checks 9 + 1 = 10.
-Codex's test completes 2 + 3 = 5 and then checks × 2 = 10. Both sequences
+OpenAI's test completes 2 + 3 = 5 and then checks × 2 = 10. Both sequences
 passed in the widget test named "Check real agent suggestions against
 calculator behavior." This app stores the formatted result in _input and
-reuses it after equals, so Codex's sequence is supported without adding
+reuses it after equals, so OpenAI's sequence is supported without adding
 long-expression evaluation. Gemini supplied JavaScript test code; I used
 the suggested sequence in a Flutter widget test rather than copying code
 for a different framework.

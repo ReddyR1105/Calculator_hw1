@@ -2,7 +2,7 @@
 
 Completed actual responses are in [AI_Test_Drive_Records.md](AI_Test_Drive_Records.md). Comparisons are in [Implementation.md](Implementation.md).
 
-Both prompts and the question 06 trade-off question were sent unchanged to Google Gemini and an independent OpenAI Codex agent on October 7, 2026. Codex as a substitute needs instructor acceptance because the guide names Gemini, ChatGPT, and Copilot.
+Both prompts and the question 06 trade-off question were sent unchanged to Google Gemini and an independent OpenAI workspace assistant on October 7, 2026. OpenAI as a substitute needs instructor acceptance because the guide names Gemini, ChatGPT, and Copilot.
 
 ## Prompt 01: Bug Hunt
 

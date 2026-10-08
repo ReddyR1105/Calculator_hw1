@@ -1,10 +1,10 @@
 # Actual AI Test Drive records
 
-Test date: October 7, 2026. Agents: Google Gemini (interface model: 3.5 Flash-Lite) and an independent OpenAI Codex agent.
+Test date: October 7, 2026. Agents: Google Gemini (interface model: 3.5 Flash-Lite) and an independent OpenAI workspace assistant.
 
 The prompts below were sent unchanged to both agents. These are their actual responses, including mistakes. No follow-up corrections have been inserted into their answers.
 
-Course requirement note: the guide names Gemini, ChatGPT, and Copilot. Codex is a substitute and needs instructor acceptance. ChatGPT stopped at browser verification and Copilot required sign-in; neither returned an answer. Codex is not labeled as ChatGPT.
+Course requirement note: the guide names Gemini, ChatGPT, and Copilot. The OpenAI workspace assistant is a substitute and needs instructor acceptance. ChatGPT stopped at browser verification and Copilot required sign-in; neither returned an answer. OpenAI is the provider label for the actual workspace assistant; these responses did not come from the ChatGPT website.
 
 Comparisons and decisions are in [Implementation.md](Implementation.md). The widget test "Check real agent suggestions against calculator behavior" verifies the arithmetic, input rules, and both state-design test sequences. Results are in [widget-tests.txt](../evidence/widget-tests.txt).
 
@@ -45,7 +45,7 @@ Case 6 (Invalid Malformed Operand): Tests an operand containing multiple decimal
 
 Would you like to explore edge cases involving negative number entry or memory persistence features next?
 
-### Codex response
+### OpenAI response
 
 | # | Exact input sequence | Expected outcome | Coverage / requirement |
 |---|---|---|---|
@@ -120,7 +120,7 @@ test('calculator uses current displayText instead of stale resultText after a co
   expect(calc.displayText).toBe('10');
 });
 
-### Codex response
+### OpenAI response
 
 - **Store `displayText`:** preserves the current input exactly, including partial entries such as `0.`.
 - **Store `firstOperand` and `pendingOperator`:** needed while the user enters the second operand.
@@ -171,7 +171,7 @@ For standard calculators, reusing custom UI widgets while avoiding heavy math de
 
 What framework or technology stack are you using to build your calculator?
 
-### Codex response
+### OpenAI response
 
 For a small calculator, reuse the framework’s built-in widgets and keep dependencies minimal.
 

@@ -63,9 +63,9 @@ performance measurements remain separate checks.
 ## Before submission
 
 The complete project is uploaded to the public repository linked above.
-Actual Gemini and Codex responses are in `docs/AI_Test_Drive_Records.md`,
+Actual Gemini and OpenAI responses are in `docs/AI_Test_Drive_Records.md`,
 with comparisons and verified claims in `docs/Implementation.md`. The course
-guide names Gemini, ChatGPT, and Copilot, so Codex as a substitute needs
+guide names Gemini, ChatGPT, and Copilot, so OpenAI as a substitute needs
 instructor acceptance. ChatGPT and Copilot did not return responses in the
 available browser sessions.
 

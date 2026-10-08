@@ -174,15 +174,15 @@ Three required LMS uploads:
 Course: {META.get('course') or 'confirm the course'}.
 The three selected enhanced features are theme toggle, all-clear, and error handling.
 
-Actual Gemini and Codex responses are recorded in Extras/AI_Test_Drive_Records.md.
+Actual Gemini and OpenAI responses are recorded in Extras/AI_Test_Drive_Records.md.
 The unchanged Bug Hunt and State Design prompts each received two real responses.
 Both agents also answered the question 06 trade-off prompt. Claims were checked
 against additional widget tests and the source code.
 
-One requirement needs instructor acceptance: Codex is the second actual agent.
+One requirement needs instructor acceptance: the OpenAI workspace assistant is the second agent.
 The course guide's named options are Gemini, ChatGPT, and Copilot. ChatGPT's
 browser verification and Copilot's sign-in prevented obtaining their responses.
-Codex is not presented as ChatGPT. A grade cannot be guaranteed.
+OpenAI identifies the provider; these are workspace responses, not ChatGPT website responses. A grade cannot be guaranteed.
 
 The complete source is uploaded to the public GitHub repository. The student's
 ID is included in the private Word document and excluded from the public source.
