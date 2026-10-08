@@ -4,14 +4,12 @@ Name: [ADD YOUR NAME]
 
 Student ID: [ADD YOUR STUDENT ID]
 
-Course: [CONFIRM CSC 4360 OR CSC 6370]
+Course: CSC 4360 — Undergraduate
 
 Test date: October 7, 2026
 
-Draft items to finish: confirm the course level, add name and ID, and complete
-the required comparisons using actual responses from two agents. The current
-app covers the undergraduate feature menu. The graduate pathway would need
-three advanced features before submission.
+Draft item to finish: complete the required comparisons using actual responses
+from two agents. This project follows the CSC 4360 undergraduate pathway.
 
 ## App overview
 
@@ -49,7 +47,7 @@ and AC also clears the error. After 9 ÷ 0 =, entering 4 + 2 = gives 6.
 
 These are the three enhanced features selected from the undergraduate menu.
 Decimal input is an extra convenience; it is not being counted as one of
-those three features. The course level still needs confirmation.
+those three features.
 
 ## 01. State and architecture
 

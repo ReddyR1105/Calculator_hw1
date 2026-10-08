@@ -6,9 +6,8 @@ A small Flutter calculator for Assignment 01. Enter a number, choose an
 operator, enter a second number, and press equals.
 
 The app includes the four arithmetic operations, decimal input, and three
-features from the undergraduate menu: a light/dark theme switch, all-clear,
-and recoverable error messages. Course level still needs confirmation. The
-graduate pathway would need three advanced features before submission.
+features for CSC 4360 — Undergraduate: a light/dark theme switch, all-clear,
+and recoverable error messages.
 
 ## Run and check
 
@@ -63,8 +62,7 @@ performance measurements remain separate checks.
 
 ## Before submission
 
-Confirm the course level, add the student's name and ID to the Word document,
-complete the two-agent Test Drive records using real responses, and publish
-the project to an accessible GitHub repository. Replace the placeholder in
-`github_link.txt` with that repository's actual URL. Rename the APK and Word
-document using the student's name, then upload the three required files.
+Complete the two-agent Test Drive records using real responses and upload
+the project to the repository linked above. Confirm the instructor can access
+the project files. The three LMS deliverables are `github_link.txt`, the
+release APK, and the completed Word implementation document.

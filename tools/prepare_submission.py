@@ -50,6 +50,8 @@ if META.get('name'):
     markdown = markdown.replace('[ADD YOUR NAME]', META['name'])
 if META.get('student_id'):
     markdown = markdown.replace('[ADD YOUR STUDENT ID]', META['student_id'])
+if META.get('name') and META.get('student_id'):
+    markdown = markdown.replace('add name and ID, and complete', 'complete')
 if META.get('course'):
     markdown = markdown.replace('[CONFIRM CSC 4360 OR CSC 6370]', META['course'])
 
@@ -170,8 +172,8 @@ Required uploads:
 2. YourName_Implementation.docx — add your name and ID, confirm the course, and finish the actual agent comparisons.
 3. github_link.txt — replace the placeholder with your published repository's real URL.
 
-The current app includes the undergraduate menu's theme toggle, all-clear, and error handling.
-If you are in CSC 6370, three advanced graduate features must still be implemented.
+Course: CSC 4360 — Undergraduate.
+The three selected enhanced features are theme toggle, all-clear, and error handling.
 
 Extras/calculator_app_source.zip contains the complete portable Flutter project.
 Extract it and publish the calculator_app folder to GitHub. Check that the instructor can access it.
@@ -187,6 +189,10 @@ Manual TalkBack listening and older-device performance checks are still unverifi
 Do not upload this bundle as if the placeholders were finished. Upload the three required files after completing them.
 '''
 readme = readme.replace('YourName', NAME)
+if META.get('name') and META.get('student_id'):
+    readme = readme.replace('add your name and ID, confirm the course', 'confirm the course')
+if META.get('course'):
+    readme = readme.replace('confirm the course, and finish', 'finish')
 if url:
     readme = readme.replace('3. github_link.txt — replace the placeholder with your published repository\'s real URL.',
                            '3. github_link.txt — contains ' + url + '. Upload the complete project to that repository and verify instructor access.')
